@@ -11,8 +11,8 @@ server.get('/', (req, res) => {
 
 server.use(express.json());
 server.use(logger);
-server.use('/projects',projectRouter);
-server.use('/actions', actionRouter);
+server.use('/api/projects',projectRouter);
+server.use('/api/actions', actionRouter);
 
 function logger(req, res, next) {
 	console.log(`[${new Date().toISOString()}] - ${req.method} - ${req.url} - ${req.get('User-Agent')}`)
