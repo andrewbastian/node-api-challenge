@@ -40,13 +40,27 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+
+    Express is a minimal Node.js web app framework with features like routing and middleware.
+
+    Its variety or HTTP utility methods and middleware make creating APIs quick and easy.
+
+
 - [ ] Describe Middleware?
+
+In express, Middleware functions add functionality to perform tasks and extend the features of Express.
 
 - [ ] Describe a Resource?
 
+A unique URL managed via HTTP methods.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A status of 200 or 201.
+
 - [ ] How can we partition our application into sub-applications?
+
+With routes to create different sub-applications that are organized by URL.
 
 ## Minimum Viable Product
 
