@@ -52,7 +52,7 @@ function validateAction() {
 
 
 //CREATE ACTION
-router.post("/", validateAction(), (req, res, next) => {
+router.post("/", validateAction, (req, res, next) => {
   Actions.insert(req.body)
     .then(action => {
       res.json(action);
@@ -74,18 +74,31 @@ router.get("/", (req, res, next) => {
 });
 
 //READ ACTION BY ID
-router.get("/:id", validateActionId(), (req, res, next) => {
-  Actions.get(req.params.id)
+// router.get("/:id", validateAction, (req, res, next) => {
+//   const id = req.params.id
+//   Actions.get(id)
+//     .then(action => {
+//       res.json(action);
+//     })
+//     .catch(err => {
+//       next(err)
+//     })
+// })
+
+router.get('/:id', validateActionId, (req, res) => {
+    const id = req.params.id;
+    Actions.get(id)
     .then(action => {
-      res.json(action);
+        res.status(200).json(action)
     })
     .catch(err => {
-      next(err)
+        console.log(err)
+        res.status(500).json({errorMessage: "Could not retrieve specified ID"})
     })
 })
 
 //UPDATE ACTION
-router.put("/:id", validateActionId(), (req, res, next) => {
+router.put("/:id", validateActionId, (req, res, next) => {
   Actions.update(req.params.id, req.body)
     .then(action => {
       res.json(action);
@@ -97,7 +110,7 @@ router.put("/:id", validateActionId(), (req, res, next) => {
 
 //DELETE ACTION
 
-router.delete("/:id", validateActionId(), validateAction(), (req, res, next) => {
+router.delete("/:id", validateActionId, validateAction, (req, res, next) => {
   Actions.remove(req.params.id)
     .then(action => {
       res.json({

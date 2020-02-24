@@ -62,7 +62,7 @@ function  validateProjectId() {
 }
 
 //CREATE PROJECT
-router.post("/", validateProject(), (req, res, next) => {
+router.post("/", validateProject, (req, res, next) => {
   Projects.insert(req.body)
     .then(project => {
       res.status(201).json(project)
@@ -84,7 +84,7 @@ router.get("/", (req, res, next) => {
 })
 
 //READ PROJECT BY ID
-router.get("/:id", validateProject(), (req, res, next) => {
+router.get("/:id", validateProject, (req, res, next) => {
   Projects.getProjectActions(req.params.id)
     .then(project => {
       res.json(project);
@@ -95,7 +95,7 @@ router.get("/:id", validateProject(), (req, res, next) => {
 })
 
 //UPDATE PROJECT
-router.put("/:id", validateProjectId(), validateAction(), (req, res, next) => {
+router.put("/:id", validateProjectId, validateAction, (req, res, next) => {
   Projects.update(req.params.id, req.body)
     .then(project => {
       res.json(project)
@@ -106,7 +106,7 @@ router.put("/:id", validateProjectId(), validateAction(), (req, res, next) => {
 })
 
 //DELETE PROJECT
-router.delete("/:id", validateProjectId(), (req, res, next) => {
+router.delete("/:id", validateProjectId, (req, res, next) => {
   Projects.remove(req.params.id)
     .then(project => {
       res.json({
